@@ -14,6 +14,8 @@ The Islandora Content Proxy uses the same URL template and/or parameters as the 
 
 Essential to this process is a lookup performed by the Proxy to get the Islandora PID corresponding to the migrated content. As mentioned above, the old repository's identifiers for content must be stored in the Islandora objects' RELS-EXT or metadata. In the former case, the Proxy performs the query for the PID via the Fedora Commons Resource Index; in the latter case, via Solr.
 
+If the Proxy is installed on the same host as the old repository's API, and the API's URLs remain accessible, client applications will not need to be updated at all. If the Proxy is installed on a different host than the old repository's API was served from, only the hostname will need updating in the client applications. The important thing is that URL parameters used in requests to the API remain intact.
+
 ## Prerequisites
 
 On the Islandora instance, you will need to implement the [Islandora REST module](https://github.com/discoverygarden/islandora_rest).
