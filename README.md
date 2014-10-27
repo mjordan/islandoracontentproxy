@@ -6,6 +6,14 @@ This proof-of-concept application provides an HTTP proxy that pretends to be an 
 
 A typical use case is that you have migrated all of your content from CONTENTdm to Islandora. However, you have some web apps that consume the [CONTENTdm web API](http://www.contentdm.org/help6/custom/customize2a.asp). Instead of rewriting your web apps to consume the Islandora REST API directly, you can use the Islandora Content Proxy to "pretend" to be the CONTENTdm web API endpoint. Your apps ask questions of the CONTENTdm API, but the answers come from Islandora.
 
+## How it works
+
+The Islandora Content Proxy uses the same URL template and/or parameters as the non-Islandora repository's Web Services or REST interface. After migration of content from to Islandora, client applications continue to make requests to the Proxy instead of the old repository's API. The Proxy converts the old API's paramters into requests against the Islandora REST interface, which returns the requested content to the Proxy, which in turn returns the content to the client application. The Proxy can cache content retrived from Islandora to improve performance.
+
+![How it works](https://dl.dropboxusercontent.com/u/1015702/linked_to/Islandora%20Content%20Proxy%20activity%20diagram.png)
+
+Essential to this process is a lookup performed by the Proxy to get the Islandora PID corresponding to the migrated content. As mentioned above, the old repository's identifiers for content must be stored in the Islandora objects' RELS-EXT or metadata. In the former case, the Proxy performs the query for the PID via the Fedora Commons Resource Index; in the latter case, via Solr.
+
 ## Prerequisites
 
 On the Islandora instance, you will need to implement the [Islandora REST module](https://github.com/discoverygarden/islandora_rest).
