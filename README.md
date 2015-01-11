@@ -1,5 +1,7 @@
 # Islandora Content Proxy
 
+Note: This module has been superseded by [Islandora CONTENTdm API](https://github.com/mjordan/islandora_cdm_api).
+
 ## Overview
 
 This proof-of-concept application provides an HTTP proxy that pretends to be an API from a non-Islandora repository. Its purpose is to replace the web-services or REST API of an application whose content has been migrated to an Islandora instance. In effect, it lets HTTP clients that consumed the non-Islandora API continue to consume that API, but the content returned by the API is in an Islandora instance.
